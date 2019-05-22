@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace DellChallenge.C
 {
@@ -6,34 +7,32 @@ namespace DellChallenge.C
     {
         static void Main(string[] args)
         {
-            // Please refactor the code below whilst taking into consideration the following aspects:
-            //      1. clean coding
-            //      2. naming standards
-            //      3. code reusability, hence maintainability
             StartHere();
-            Console.ReadKey();
+            Console.Read();
         }
 
         private static void StartHere()
         {
-            myObject _MyNewObject = new myObject();
-            int obj1 = _MyNewObject.Do(1, 3);
-            int num2 = _MyNewObject.DoExtended(1, 3, 5);
-            Console.WriteLine(obj1);
-            Console.WriteLine(num2);
+            MyObject myNewObject = new MyObject();
+
+            int sum = myNewObject.Do(1, 3);
+            int otherSum = myNewObject.Do(1, 3, 5);
+
+            Console.WriteLine(sum);
+            Console.WriteLine(otherSum);
         }
     }
 
-    class myObject
+    internal class MyObject
     {
-
-        public int Do(int a, int b)
+        public int Do(params int[] parameter)
         {
-            return a + b;
-        }
+            if (parameter == null)
+            {
+                return 0;
+            }
 
-        public int DoExtended(int a, int b, int c)
-        { return a + b + c;
+            return parameter.Sum();
         }
     }
 }
