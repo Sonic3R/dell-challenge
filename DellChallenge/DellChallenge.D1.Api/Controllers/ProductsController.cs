@@ -3,6 +3,7 @@ using DellChallenge.D1.Api.Dto;
 using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace DellChallenge.D1.Api.Controllers
 {
@@ -28,7 +29,14 @@ namespace DellChallenge.D1.Api.Controllers
         [EnableCors("AllowReactCors")]
         public ActionResult<string> Get(int id)
         {
-            return "value";
+            var product = GetProductById(id);
+
+            if (product == null)
+            {
+                return NotFound($"{id} was not found");
+            }
+
+            return Ok(product.Name);
         }
 
         [HttpPost]
@@ -43,12 +51,29 @@ namespace DellChallenge.D1.Api.Controllers
         [EnableCors("AllowReactCors")]
         public void Delete(int id)
         {
+            _productsService.Delete(id.ToString());
         }
 
         [HttpPut("{id}")]
         [EnableCors("AllowReactCors")]
         public void Put(int id, [FromBody] string value)
         {
+            var product = GetProductById(id);
+            if (product != null)
+            {
+                // assume that I don't have permission to change IProductsService code
+                _productsService.Delete(id.ToString());
+                _productsService.Add(product);
+            }
+            else
+            {
+                _productsService.Add(new NewProductDto { Name = value });
+            }
+        }
+
+        private ProductDto GetProductById(int id)
+        {
+            return _productsService.GetAll().FirstOrDefault(p => p.Id.Equals(id));
         }
     }
 }
