@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using DellChallenge.D1.Api.Dto;
+using System.Collections.Generic;
 using System.Linq;
-using DellChallenge.D1.Api.Dto;
 
 namespace DellChallenge.D1.Api.Dal
 {
@@ -29,7 +29,34 @@ namespace DellChallenge.D1.Api.Dal
 
         public ProductDto Delete(string id)
         {
-            throw new System.NotImplementedException();
+            ProductDto prod = GetById(id);
+
+            if (prod != null)
+            {
+                var prodToDelete = MapToData(prod);
+                _context.Products.Remove(MapToData(prod));
+                _context.SaveChanges();
+
+                prod = MapToDto(prodToDelete);
+            }
+
+            return prod;
+        }
+
+        public ProductDto Update(string id, NewProductDto newProduct)
+        {
+            var productDto = GetById(id);
+            if (productDto != null)
+            {
+                var product = MapToData(newProduct);
+
+                _context.Update(product);
+                _context.SaveChanges();
+
+                productDto = MapToDto(product);
+            }
+
+            return productDto;
         }
 
         private Product MapToData(NewProductDto newProduct)
@@ -49,6 +76,11 @@ namespace DellChallenge.D1.Api.Dal
                 Name = product.Name,
                 Category = product.Category
             };
+        }
+
+        private ProductDto GetById(string id)
+        {
+            return GetAll().FirstOrDefault(s => s.Id.Equals(id));
         }
     }
 }

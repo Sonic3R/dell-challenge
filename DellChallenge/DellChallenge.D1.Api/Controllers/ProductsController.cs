@@ -61,13 +61,7 @@ namespace DellChallenge.D1.Api.Controllers
             var product = GetProductById(id);
             if (product != null)
             {
-                // assume that I don't have permission to change IProductsService code
-                _productsService.Delete(id.ToString());
-                _productsService.Add(product);
-            }
-            else
-            {
-                _productsService.Add(new NewProductDto { Name = value });
+                _productsService.Update(id.ToString(), product);
             }
         }
 
