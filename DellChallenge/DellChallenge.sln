@@ -11,7 +11,12 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DellChallenge.C", "DellChal
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DellChallenge.D1.Api", "DellChallenge.D1.Api\DellChallenge.D1.Api.csproj", "{D2FC3998-3D22-487A-997F-B0D1CF6CB6E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DellChallenge.D2.Web", "DellChallenge.D2.Web\DellChallenge.D2.Web.csproj", "{40B220A3-8214-445C-8DA6-EE5CDFEC8891}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DellChallenge.D2.Web", "DellChallenge.D2.Web\DellChallenge.D2.Web.csproj", "{40B220A3-8214-445C-8DA6-EE5CDFEC8891}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{DBF39F4A-DB7B-4FCD-A08C-8B5EF72A2CA5}"
+	ProjectSection(SolutionItems) = preProject
+		.editorconfig = .editorconfig
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
