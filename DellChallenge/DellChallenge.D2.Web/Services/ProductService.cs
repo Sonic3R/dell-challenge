@@ -64,7 +64,7 @@ namespace DellChallenge.D2.Web.Services
 
         private void Execute(string url, Method method)
         {
-            Execute<bool?>(url, method, null);
+            Execute<bool>(url, method);
         }
     }
 }
