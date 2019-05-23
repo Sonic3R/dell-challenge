@@ -1,7 +1,6 @@
 ﻿using DellChallenge.D2.Web.Models;
 using DellChallenge.D2.Web.Services;
 using Microsoft.AspNetCore.Mvc;
-using System.Linq;
 
 namespace DellChallenge.D2.Web.Controllers
 {
@@ -35,21 +34,46 @@ namespace DellChallenge.D2.Web.Controllers
         }
 
         [HttpGet]
-        public IActionResult Update(int id)
+        public IActionResult Update(string id)
         {
-            var product = _productService.GetAll().FirstOrDefault(p => p.Id.Equals(id.ToString()));
+            var product = _productService.GetById(id);
+
+            if (product == null)
+            {
+                return RedirectToAction("Index");
+            }
+
             return View(product);
         }
 
-        [HttpDelete]
-        public IActionResult Delete(int id)
+        [HttpGet]
+        public IActionResult Delete(string id)
         {
+            var product = _productService.GetById(id);
+
+            if (product == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult DeleteProduct(string id)
+        {
+            _productService.Delete(id);
             return RedirectToAction("Index");
         }
 
-        [HttpPut]
-        public IActionResult Update(int id, NewProductModel model)
+        [HttpPost]
+        public IActionResult Update(string id, NewProductModel model)
         {
+            if (ModelState.IsValid)
+            {
+                _productService.Update(id, model);
+            }
+
             return RedirectToAction("Index");
         }
     }

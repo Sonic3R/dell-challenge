@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using DellChallenge.D2.Web.Models;
 using Microsoft.AspNetCore.Mvc;
-using DellChallenge.D2.Web.Models;
+using System.Diagnostics;
 
 namespace DellChallenge.D2.Web.Controllers
 {

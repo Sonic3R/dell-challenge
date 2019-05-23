@@ -9,5 +9,7 @@ namespace DellChallenge.D1.Api.Dal
         ProductDto Add(NewProductDto newProduct);
         ProductDto Delete(string id);
         ProductDto Update(string id, NewProductDto newProduct);
+
+        ProductDto GetById(string id);
     }
 }
