@@ -6,7 +6,7 @@ namespace DellChallenge.D2.Web.Services
 {
     public class ProductService : IProductService
     {
-        private const string REST_API = "http://localhost:2534/api";
+        private const string REST_API = "http://localhost:5000/api";
         private const string RESOURCE_NAME = "products";
         private readonly RestClient _apiClient;
 
